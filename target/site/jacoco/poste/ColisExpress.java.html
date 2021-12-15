@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ColisExpress.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3</a> &gt; <a href="index.source.html" class="el_package">poste</a> &gt; <span class="el_source">ColisExpress.java</span></div><h1>ColisExpress.java</h1><pre class="source lang-java linenums">package poste;
+
+import java.time.LocalDate;
+
+
+public class ColisExpress extends Colis {
+	private LocalDate dateEnvoi;
+<span class="fc" id="L8">	private static int nbColisExpress=0;</span>
+	private int numeroSuivi;
+	private boolean emballagePoste;
+<span class="fc" id="L11">	private static float affranchissementColisExpress=30f;</span>
+<span class="fc" id="L12">	private static float tarifEmballage=3f;</span>
+<span class="fc" id="L13">	private static float poidsMax=30;</span>
+
+	public ColisExpress(String o, String d, String cP, float pds, float v, Recommandation t, String dC, float vD,
+			boolean emballagePoste) throws ColisExpressInvalide {
+<span class="fc" id="L17">		super(o, d, cP, pds, v, t, dC, vD); // appel du constructeur de la super classe Colis</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		if (pds&gt;=poidsMax) {throw new ColisExpressInvalide(&quot;poids incohérent, votre colis ne pourra pas être acheminé.&quot;); }</span>
+<span class="fc" id="L19">		this.emballagePoste = emballagePoste;</span>
+<span class="fc" id="L20">		numeroSuivi=nbColisExpress;</span>
+<span class="fc" id="L21">		nbColisExpress++;</span>
+<span class="fc" id="L22">		dateEnvoi=LocalDate.now();// date du jour</span>
+<span class="fc" id="L23">	}</span>
+	
+	
+	// redéfinition en masquant le comportement hérité de la super-classe
+	public float tarifAffranchissement() {
+<span class="fc" id="L28">		float result=ColisExpress.affranchissementColisExpress;</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">		if (emballagePoste) result+=ColisExpress.tarifEmballage;</span>
+<span class="fc" id="L30">		return result;</span>
+	}
+
+<span class="fc" id="L33">	public String typeObjetPostal() {return &quot;Colis express&quot;;}</span>
+	public String toString() {
+<span class="fc" id="L35">		return super.toString()+&quot;/&quot;+getPoids()+&quot;/&quot;+numeroSuivi;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

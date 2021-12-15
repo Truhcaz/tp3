@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainPoste.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3</a> &gt; <a href="index.source.html" class="el_package">poste</a> &gt; <span class="el_source">MainPoste.java</span></div><h1>MainPoste.java</h1><pre class="source lang-java linenums">package poste;
+
+<span class="nc" id="L3">public class MainPoste</span>
+{
+<span class="nc" id="L5">	private static float tolerancePrix=0.001f;</span>
+<span class="nc" id="L6">	private static float toleranceVolume=0.0000001f;</span>
+	public static void main(String[] arguments)
+	{
+		
+		// création des objets sous test
+<span class="nc" id="L11">		Lettre lettre1 = new Lettre(&quot;Le pere Noel&quot;,</span>
+				&quot;famille Kirik, igloo 5, banquise nord&quot;,
+				&quot;7877&quot;, 25, 0.00018f, Recommandation.un, false);
+<span class="nc" id="L14">		Lettre lettre2 = new Lettre(&quot;Le pere Noel&quot;,</span>
+				&quot;famille Kouk, igloo 2, banquise nord&quot;,
+				&quot;5854&quot;, 18, 0.00018f, Recommandation.deux, true);
+<span class="nc" id="L17">		Colis colis1 = new Colis(&quot;Le pere Noel&quot;, </span>
+				&quot;famille Kaya, igloo 10, terres ouest&quot;,
+				&quot;7877&quot;, 1024, 0.02f, Recommandation.deux, &quot;train electrique&quot;, 200);      
+		// test toString
+<span class="nc bnc" id="L21" title="All 2 branches missed.">		if(colis1.toString().equals(&quot;Colis 7877/famille Kaya, igloo 10, terres ouest/2/0.02/200.0&quot;)){</span>
+<span class="nc" id="L22">			System.out.println(&quot;toString Colis 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L24">			System.out.println(&quot;toString Colis 1 NOK&quot;);</span>
+		}
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">		if(lettre1.toString().equals(&quot;Lettre 7877/famille Kirik, igloo 5, banquise nord/1/ordinaire&quot;)){</span>
+<span class="nc" id="L28">			System.out.println(&quot;toString Lettre 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L30">			System.out.println(&quot;toString Lettre 1 NOK&quot;);</span>
+		}
+
+<span class="nc bnc" id="L33" title="All 2 branches missed.">		if(lettre2.toString().equals(&quot;Lettre 5854/famille Kouk, igloo 2, banquise nord/2/urgence&quot;)){</span>
+<span class="nc" id="L34">			System.out.println(&quot;toString Lettre 2 OK&quot;);	</span>
+		}else{
+<span class="nc" id="L36">			System.out.println(&quot;toString Lettre 2 NOK&quot;);</span>
+		}
+
+
+		// test affranchissement
+<span class="nc bnc" id="L41" title="All 2 branches missed.">		if(Math.abs(lettre1.tarifAffranchissement()-1.0f)&lt;tolerancePrix){</span>
+<span class="nc" id="L42">			System.out.println(&quot;Affranchissement lettre 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L44">			System.out.println(&quot;Affranchissement lettre 1 NOK&quot;);</span>
+		}
+<span class="nc bnc" id="L46" title="All 2 branches missed.">		if(Math.abs(lettre2.tarifAffranchissement()-2.3f)&lt;tolerancePrix){</span>
+<span class="nc" id="L47">			System.out.println(&quot;Affranchissement lettre 2 OK&quot;);</span>
+		} else{
+<span class="nc" id="L49">			System.out.println(&quot;Affranchissement lettre 2 NOK&quot;);</span>
+		}
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		if(Math.abs(colis1.tarifAffranchissement()-3.5f)&lt;tolerancePrix){</span>
+<span class="nc" id="L52">			System.out.println(&quot;Affranchissement colis 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L54">			System.out.println(&quot;Affranchissement colis 1 NOK&quot;);</span>
+		}
+
+		// test de tarif de remboursement
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if(Math.abs(lettre1.tarifRemboursement()-1.5f)&lt;tolerancePrix){</span>
+<span class="nc" id="L59">			System.out.println(&quot;Remboursement lettre 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L61">			System.out.println(&quot;Remboursement lettre 1 NOK&quot;);</span>
+		}
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if(Math.abs(lettre2.tarifRemboursement()-15.0f)&lt;tolerancePrix){</span>
+<span class="nc" id="L64">			System.out.println(&quot;Remboursement lettre 2 OK&quot;);</span>
+		} else{
+<span class="nc" id="L66">			System.out.println(&quot;Remboursement lettre 2 NOK&quot;);</span>
+		}
+<span class="nc bnc" id="L68" title="All 2 branches missed.">		if(Math.abs(colis1.tarifRemboursement()-100.0f)&lt;tolerancePrix){</span>
+<span class="nc" id="L69">			System.out.println(&quot;Remboursement colis 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L71">			System.out.println(&quot;Remboursement colis 1 NOK&quot;);</span>
+		}
+
+		// TODO test sur les ColisEXpress
+		
+		// tests sur les sacs postaux
+<span class="nc" id="L77">		SacPostal sac1 = new SacPostal();</span>
+<span class="nc" id="L78">		sac1.ajoute(lettre1);</span>
+<span class="nc" id="L79">		sac1.ajoute(lettre2);</span>
+<span class="nc" id="L80">		sac1.ajoute(colis1);</span>
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		if(Math.abs(sac1.valeurRemboursement()-116.5f)&lt;tolerancePrix){</span>
+<span class="nc" id="L83">			System.out.println(&quot;Remboursement sac 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L85">			System.out.println(&quot;Remboursement sac 1 NOK&quot;);</span>
+		}
+
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		if(Math.abs(sac1.getVolume()-0.025359999558422715f)&lt;toleranceVolume){</span>
+<span class="nc" id="L89">			System.out.println(&quot;volume sac 1 OK&quot;);</span>
+		} else{
+<span class="nc" id="L91">			System.out.println(&quot;volume sac 1 NOK&quot;);</span>
+		}
+
+
+
+<span class="nc" id="L96">		SacPostal sac2 = sac1.extraireV1(&quot;7877&quot;);</span>
+
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if(sac2.getVolume()-0.02517999955569394f&lt;toleranceVolume){</span>
+<span class="nc" id="L99">			System.out.println(&quot;volume sac 2 OK&quot;);</span>
+		} else{
+<span class="nc" id="L101">			System.out.println(&quot;volume sac 2 NOK&quot;);</span>
+		}
+		
+<span class="nc" id="L104">		System.out.println(sac1.valeurRemboursement());</span>
+
+<span class="nc" id="L106">	}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

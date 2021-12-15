@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ObjetPostal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3</a> &gt; <a href="index.source.html" class="el_package">poste</a> &gt; <span class="el_source">ObjetPostal.java</span></div><h1>ObjetPostal.java</h1><pre class="source lang-java linenums">package poste;
+
+public abstract class ObjetPostal
+{
+	private String origine;
+	private String destination;
+	private String codePostal; // on choisit ici String pour ne pas se préoccuper des 0 non significatifs
+	private float  poids;
+	private float volume;
+	private Recommandation    tauxRecommandation;
+
+	// constructeurs
+
+	public ObjetPostal()
+<span class="nc" id="L15">	{origine=&quot;inconnue&quot;; destination=&quot;inconnue&quot;; codePostal=&quot;0000&quot;; </span>
+<span class="nc" id="L16">	poids=0; volume=0; tauxRecommandation=Recommandation.zero;}</span>
+
+
+	// comme la classe est abstraite, ne sera pas appelé à la suite d'un new mais dans les constructeurs des sous classes
+	public ObjetPostal(String origine, String destination, String codePostal, float poids, float volume,
+<span class="fc" id="L21">			Recommandation tauxRecommandation) {</span>
+<span class="fc" id="L22">		this.origine = origine;</span>
+<span class="fc" id="L23">		this.destination = destination;</span>
+<span class="fc" id="L24">		this.codePostal = codePostal;</span>
+<span class="fc" id="L25">		this.poids = poids;</span>
+<span class="fc" id="L26">		this.volume = volume;</span>
+<span class="fc" id="L27">		this.tauxRecommandation = tauxRecommandation;</span>
+<span class="fc" id="L28">	}</span>
+
+
+
+	//accesseurs, seuls certains accesseurs en lecture sont utiles dans notre exemple
+
+<span class="nc" id="L34">	public String getOrigine()  {return origine;}</span>
+	//public void setOrigine(String o) {origine=o;}
+
+<span class="fc" id="L37">	public String getDestination()  {return destination;}</span>
+	//public void setDestination(String d) {destination=d;}
+
+<span class="fc" id="L40">	public String getCodePostal()   {return codePostal;}</span>
+	//public void setCodePostal(String cp) {codePostal=cp;}
+
+<span class="fc" id="L43">	public float getPoids()   {return poids;}</span>
+	//public void setPoids(float p) {poids=p;}
+
+	public float getVolume()   {
+<span class="fc" id="L47">		return volume;}</span>
+	//public void setVolume(float v) {volume=v;}
+
+	public Recommandation getTauxRecommandation()   {
+<span class="fc" id="L51">		return tauxRecommandation;</span>
+	}  
+
+	//public void  setTauxRecommandation(Recommandation txr) {   
+	//tauxRecommandation=txr;
+	//}  
+
+	// tous les objets postaux ont un tarif de base, auquel on peut accéder grâce à la méthode getTarifBase
+	public abstract  float getTarifBase();
+
+	// autres méthodes
+
+	abstract public float tarifRemboursement();
+
+	public float tarifAffranchissement()
+	{// partie commune à tous les objets postaux pour le calcul du tarif d'affranchissement
+<span class="fc" id="L67">		float t=getTarifBase();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		if (getTauxRecommandation()==Recommandation.un)  t=t+0.5f;</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		else if (getTauxRecommandation()==Recommandation.deux) t=t+1.5f;</span>
+<span class="fc" id="L70">		return t;</span>
+	}
+
+	public String toString()
+	{// partie commune dans le descriptif
+<span class="fc" id="L75">		return typeObjetPostal()+&quot; &quot;+getCodePostal()+&quot;/&quot;+getDestination()</span>
+<span class="fc" id="L76">		+&quot;/&quot;+getTauxRecommandation(); // ici on n'est pas obligé de passer par les accesseurs</span>
+	}
+
+	abstract public String typeObjetPostal(); // utile pour le toString, voir ci-dessus
+	
+	public void affiche() {
+<span class="nc" id="L82">		System.out.println(toString());</span>
+<span class="nc" id="L83">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

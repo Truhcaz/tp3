@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tp3,poste,App,7,0,0,0,3,0,2,0,2,0
+tp3,poste,Recommandation,0,49,0,0,0,6,0,3,0,3
+tp3,poste,ObjetPostal,29,81,1,3,5,19,4,9,3,8
+tp3,poste,MainPoste,240,0,24,0,49,0,15,0,3,0
+tp3,poste,Lettre,8,82,1,7,4,18,2,11,1,8
+tp3,poste,ColisExpressInvalide,0,4,0,0,0,2,0,1,0,1
+tp3,poste,Colis,23,84,3,3,5,19,5,8,2,8
+tp3,poste,ColisExpress,0,73,1,3,0,16,1,6,0,5
+tp3,poste,SacPostal,152,73,13,5,31,12,12,6,5,4

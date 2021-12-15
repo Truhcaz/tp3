@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Colis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3</a> &gt; <a href="index.source.html" class="el_package">poste</a> &gt; <span class="el_source">Colis.java</span></div><h1>Colis.java</h1><pre class="source lang-java linenums">package poste;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+public class Colis extends ObjetPostal
+{
+	private String declareContenu;
+	private float valeurDeclaree;
+
+<span class="fc" id="L11">	private static float tarifBase=2;</span>
+<span class="fc" id="L12">	private static String typeObjetPostal=&quot;Colis&quot;;</span>
+	
+	public Colis()
+<span class="nc" id="L15">	{// implicitement : super();</span>
+<span class="nc" id="L16">		declareContenu=&quot;vide&quot;; valeurDeclaree=0;}</span>
+
+	public Colis(String origine, String destination, String codePostal, float poids, float volume,
+			Recommandation tauxRecommandation, String declareContenu, float valeurDeclaree) {
+<span class="fc" id="L20">		super(origine, destination, codePostal, poids, volume, tauxRecommandation); // appel au constructeur de la super classe</span>
+<span class="fc" id="L21">		this.declareContenu = declareContenu;</span>
+<span class="fc" id="L22">		this.valeurDeclaree = valeurDeclaree;</span>
+<span class="fc" id="L23">	}</span>
+
+
+
+	//accesseurs (en lecture)
+<span class="nc" id="L28">	public String getDeclareContenu() {return declareContenu;}</span>
+	//public void setDeclareContenu(String dc) {declareContenu=dc;}
+
+<span class="fc" id="L31">	public float getValeurDeclaree() {return valeurDeclaree;}</span>
+	//public void  setValeurDeclaree(float vd) {valeurDeclaree=vd;}
+
+	//autres methodes
+
+<span class="fc" id="L36">	public float getTarifBase(){return tarifBase;}</span>
+
+	public float tarifRemboursement()
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">	{if (getTauxRecommandation()==Recommandation.un)</span>
+<span class="nc" id="L40">		return getValeurDeclaree()*0.1f;</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">	else if (getTauxRecommandation()==Recommandation.deux)</span>
+<span class="fc" id="L42">		return getValeurDeclaree()*0.5f;</span>
+<span class="nc" id="L43">	else return 0;}</span>
+
+	public float tarifAffranchissement()
+	{
+<span class="fc" id="L47">		float t=super.tarifAffranchissement();</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">		if (getVolume() &gt; 1f/8f) {t = t+3;}</span>
+<span class="fc" id="L49">		return t;</span>
+	}
+
+	public String toString()
+	{
+<span class="fc" id="L54">		NumberFormat formatter = null;</span>
+<span class="fc" id="L55">		formatter=java.text.NumberFormat.getInstance(java.util.Locale.FRENCH);</span>
+		/**
+		 * Arrondir au centime
+		 */
+<span class="fc" id="L59">		formatter = new DecimalFormat(&quot;#0.00&quot;);</span>
+
+<span class="fc" id="L61">		return super.toString()+&quot;/&quot;+(float)Math.round(getVolume()*100)/100+&quot;/&quot;+getValeurDeclaree();}</span>
+
+<span class="fc" id="L63">	public String typeObjetPostal() {return typeObjetPostal;}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
